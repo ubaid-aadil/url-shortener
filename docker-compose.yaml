@@ -1,0 +1,20 @@
+version: "3.7"
+
+services:
+  api:
+    build: api
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+  db:
+    build: db
+    ports:
+      - "1234:1234"
+    environment:
+      - MYSQL_RANDOM_ROOT_PASSWORD="secret"
+      - MYSQL_DATABASE="url-short"
+      - MYSQL_USER="root"
+      - MYSQL_PASSWORD="secret"
+    volumes:
+      - ./data:/data
